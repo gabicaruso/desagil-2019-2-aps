@@ -12,7 +12,7 @@ public class OrGate extends Gate {
         nandTop = new NandGate();
         nandBottom = new NandGate();
         nandRight = new NandGate();
-
+      
         nandRight.connect(0, nandTop);
         nandRight.connect(1, nandBottom);
     }
