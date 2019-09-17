@@ -8,6 +8,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class GateView extends FixedPanel implements ItemListener {
+    private static final int BORDER = 10;
+    private static final int SWITCH_SIZE = 18;
+    private static final int GATE_WIDTH = 90;
+    private static final int GATE_HEIGHT = 120;
 
     private final Switch[] switches;
     private final Gate gate;
@@ -15,7 +19,7 @@ public class GateView extends FixedPanel implements ItemListener {
     private final JCheckBox outputBox;
 
     public GateView(Gate gate) {
-        super(100,100);
+        super(BORDER + SWITCH_SIZE + GATE_WIDTH + SWITCH_SIZE + BORDER, GATE_HEIGHT);
         this.gate = gate;
 
         int inputSize = gate.getInputSize();
@@ -35,9 +39,13 @@ public class GateView extends FixedPanel implements ItemListener {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        int y = -(SWITCH_SIZE / 2);
+        int step = (GATE_HEIGHT / (inputSize + 1));
+
         add(inputLabel);
         for (JCheckBox inputBox : inputBoxes) {
-            add(inputBox);
+            y += step;
+            add(inputBox, BORDER, y, SWITCH_SIZE, SWITCH_SIZE);
             inputBox.addItemListener(this);
         }
 
@@ -68,5 +76,6 @@ public class GateView extends FixedPanel implements ItemListener {
     public void itemStateChanged(ItemEvent event) {
         update();
     }
+
 }
 
