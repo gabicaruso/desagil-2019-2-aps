@@ -1,3 +1,5 @@
+// FONTE DAS IMAGENS: https://en.wikipedia.org/wiki/Logic_gate (domínio público)
+
 package br.pro.hashi.ensino.desagil.aps.view;
 
 import br.pro.hashi.ensino.desagil.aps.model.Gate;
@@ -17,15 +19,17 @@ public class GateView extends FixedPanel implements ItemListener {
     private final Gate gate;
     private final JCheckBox[] inputBoxes;
     private final JCheckBox outputBox;
-
+  
     public GateView(Gate gate) {
         super(BORDER + SWITCH_SIZE + GATE_WIDTH + SWITCH_SIZE + BORDER, GATE_HEIGHT);
+
         this.gate = gate;
 
         int inputSize = gate.getInputSize();
 
         switches = new Switch[inputSize];
         inputBoxes = new JCheckBox[inputSize];
+
         outputBox = new JCheckBox();
 
         JLabel inputLabel = new JLabel("Input:");
@@ -69,7 +73,6 @@ public class GateView extends FixedPanel implements ItemListener {
         boolean result = gate.read();
 
         outputBox.setSelected(result);
-
     }
 
     @Override
